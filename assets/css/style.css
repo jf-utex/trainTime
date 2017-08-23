@@ -1,0 +1,9 @@
+.jumbotron{
+margin-bottom:14px;
+background-image: url(../images/tracks.jpg);
+background-position: 0% 25%;
+background-size: cover;
+background-repeat: no-repeat;
+color: white;
+text-shadow: black 0.6em 0.6em 0.6em;
+}
