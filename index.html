@@ -1,98 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Train Time</title>
-   <!-- RESET.CSS
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Train Time</title>
+  <!-- RESET.CSS
    <link href="assets/css/reset.css" rel="stylesheet" type="text/css"> -->
-   <!-- Bootstrap -->
-   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
-   <!-- Javascript -->
-   <script href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" rel="stylesheet" type="text/css"></script>
-   <!-- jQuery -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <!-- link to firebase -->
-   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-   <!--moment.js file -->
-   <script type="text/javascript" src="assets/javascript/moment.js"></script>
-   <!--Personal Style -->
-   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
- <!-- moment js -->
-   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  
-
+  <!-- Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <!-- Javascript -->
+  <script href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" rel="stylesheet" type="text/css"></script>
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+  <!-- link to firebase -->
+  <!--moment.js file -->
+  <script type="text/javascript" src="assets/javascript/moment.js"></script>
+  <!--Personal Style -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <!-- moment js -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 </head>
+
 <body>
-<!--place heading at top of each panel
-    make sure each field has reference
-    connect to 
-    time input in military-->
+  <div class="container">
+    <div class="row">
+      <div class="jumbotron text-center">
+        <h2> The Train Scheduler</h2>
+      </div>
+      <!-- closes jumbotron -->
+    </div>
+    <!-- closes row -->
+  </div>
+  <!-- closes jumbotron container -->
 
 
-        <div class="container">
-            <div class="row">
-                <div class="jumbotron text-center">
-                    <h2> The Train Scheduler</h2>
-                </div> <!-- closes jumbotron -->
-            </div> <!-- closes row -->
-        </div> <!-- closes jumbotron container -->
-
-
-        <div class="panel panel-primary"> <!--to hold train schedule output-->
-            <div class="panel-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th>Train Name</th>
-                        <th>Destination</th>
-                        <th>Frequency</th>
-                        <th>Next Arrival</th>
-                        <th>Minutes Away</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table> <!--closes primary panel for train scheduel output-->
-
-            </div>
-        </div>  <!--close panel-primary to hold return -->
+  <div class="panel panel-primary">
+    <!--to hold train schedule output-->
+    <div class="panel-body">
+      <table class="table table-hover" id= trainTable>
+        <thead>
+          <tr>
+            <th>Train Name</th>
+            <th>Destination</th>
+            <th>Frequency</th>
+            <th>Next Arrival</th>
+            <th>Minutes Away</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- output to go here -->
+        </tbody>
+      </table>
+      <!--closes primary panel for train scheduel output-->
+    </div>
+  </div>
+  <!--close panel-primary to hold return -->
 
 
 
-        <div class="panel panel-primary"> <!--to hold inquiry form-->
-            <div class="panel-body">
+  <div class="panel panel-primary">
+    <!--to hold inquiry form-->
+    <div class="panel-body">
 
-                <form>
-                    <div class="form-group">
-                        <label for="trainName">Train Name</label>
-                        <input type="text" class="form-control" id="train1">
-                    </div> <!-- close div for form group train name-->
-                            
-                    <div class="form-group">
-                        <label for="destination">Destination</label>
-                        <input type="text" class="form-control" id="destination">
-                        
-                        <div class="form-group">
-                            <label for="timeinput">
-                                <br>
-                            First Train Time (HH:mm Military Time)</label>
-                            <div class="col-10">
-                                <input class="form-control" type="number" id="timeinput">
-                                    <br>
-                                <label for="frequency">Frequency (min)</label>
-                                <input type="number" class="form-control" id="frequency">
-                            </div> <!-- close class col-->
-                        </div><!-- close form group row-->
-                    </div> <!-- close primary group-->
-
-            
-            <button type="submit" class="btn btn-success" id="submitBtn">Submit</button>
+      <form>
+        <div class="form-group">
+          <label for="Train Name">Train Name</label>
+          <input type="text" class="form-control" id="trainNameInput">
         </div>
-        </div>  <!--closes div for inquiry form-->
+        <!-- close div for form group train name-->
 
-        <script type="text/javascript" src="assets/javascript/app.js"></script>
+        <div class="form-group">
+          <label for="Destination">Destination</label>
+          <input type="text" class="form-control" id="destinationInput">
+
+          <div class="form-group">
+            <label for="First Train Time">
+                                <br>First Train Time (HH:mm - Military Time) </label>
+            <div class="col-10">
+              <input class="form-control" type='text' id="firstTrainInput">
+              <br>
+              <label for="Frequency">Frequency (min)</label>
+              <input type="number" class="form-control" id="frequencyInput">
+            </div>
+            <!-- close class col-->
+          </div>
+          <!-- close form group row-->
+        </div>
+        <!-- close primary group-->
+
+
+        <input type="submit" value="submit" class="btn btn-success" id="submitBtn" />
+      </form>
+    </div>
+  </div>
+  <!--closes div for inquiry form-->
+
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
+
 </html>

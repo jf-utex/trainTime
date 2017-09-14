@@ -1,5 +1,5 @@
 
-// link and Initialize firebase   
+// link and Initialize firebase
 
 var config = {
     apiKey: "AIzaSyC6uGX4LwksaNDmpMWB1Paw63mqg8_NRCo",
@@ -13,96 +13,51 @@ var config = {
   firebase.initializeApp(config);
 
   //create variable to reference firebase database
-
-
-  var database = firebase.database();
+  var trainData = firebase.database();
 
 //Capture User Input
-$("#submitBtn").on("click", function(event) {
-  event.preventDefault();
- 
+$("#submitBtn").on("click",function(){
 
   //Saves Input Assigned
-  var train1 = $("#train1").val().trim();
-  var destination= $("#destination").val().trim();
-  var frequency = $("#frequency").val().trim();
-  var time = $("#timeinput").val().trim();
-  
-//Push to Firebase
-  database.ref().push({
-        train1: train1,
-        destination: destination,
-        frequency: frequency,
-        time: time,
-    
-  }); //closes database push
+  var trainName = $("#trainNameInput").val().trim();
+  var destination= $("#destinationInput").val().trim();
+  var firstTrain = moment($("#firstTrainInput").val().trim(),"HH:mm").subtract(10,"years").format("X");
+  var frequency = $("#frequencyInput").val().trim();
 
-}); //Closes User Input/Submit function
+  var newTrain = {
+    name: trainName,
+    destination: destination,
+    firstTrain: firstTrain,
+    frequency: frequency,
+  }
 
+  //push to Firebase
+  trainData.ref().push(newTrain);
 
-database.ref().on("child_added", function(childSnapshot, prevChildKey){
+  alert("Train was added!");
 
-  // Stores input to variables
-  
-  var train1=childSnapshot.val().train1;
-  var destination=childSnapshot.val().destination;
-  var frequency=childSnapshot.val().frequency;
-  var time=childSnapshot.val().time;
-  
-//Writes to table in HTML
-  $("tbody").append("<tr><td>" + train1 + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + time + "</td></tr>");
+  $("#trainNameInput").val("");
+  $("#destinationInput").val("");
+  $("#firstTrainInput").val("");
+  $("#frequencyInput").val("");
 
-//Clear boxes on Submit
-$("#train1").val("");
-$("#destination").val("");
-$("#frequency").val("");
-$("#timeinput").val("");
+  console.log(firstTrain);
+  return false;
+})
 
+trainData.ref().on("child_added", function(snapshot){
+  var name = snapshot.val().name;
+  var destination = snapshot.val().destination;
+  var frequency = snapshot.val().frequency;
+  var firstTrain = snapshot.val().firstTrain;
 
-}); //closes database.ref
+  var remainder = moment().diff(moment.unix(firstTrain),"minutes")%frequency;
+  var minutes = frequency - remainder;
+  var arrival = moment().add(minutes, "m").format("hh:mm A");
 
+  console.log(remainder);
+  console.log(minutes);
+  console.log(arrival);
 
-
-
-    
-
-
-
-var tFrequency = $("#frequency").val().trim();
-
-    // Time is 3:30 AM
-var firstTime = "03:30";
-
-
-//Grabs current time from moment.js
-var currentTime = moment();
-console.log("CURRENT TIME: " + moment(currentTime).format("HH:mm"));
-
-// Difference between the times
-// var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-// console.log("DIFFERENCE IN TIME: " + diffTime);
-
-// // Time apart (remainder)
-// var tRemainder = diffTime % tFrequency;
-// console.log(tRemainder);
-
-// // Minute Until Train
-// var tMinutesTillTrain = tFrequency - tRemainder;
-// console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
-
-// // Next Train
-// var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-// console.log("ARRIVAL TIME: " + moment(nextTrain).format("HH:mm"));
-
-
-
-// ********* PseudoCode **********
-
-// convert to military time - user input - tried a time picker.js script with no luck on 
-//      reading Stack overflow, different browsers render this differently
-// pull current time with moment JS - current time is being pulled and displayed in console.log
-// calculate next time for train arrival based on current time
-//   output on next arrival time field
-// calculate how many minutes away based on current time and frequency.
-//   output to screen in minutes away field
-
+  $("#trainTable>tbody").append("<tr><td>"+name+"<td><td>"+destination+"<td><td>"+frequency+"<td><td>"+arrival+"<td><td>"+minutes+"<td><tr>");
+});
