@@ -36,73 +36,69 @@
   </div>
   <!-- closes jumbotron container -->
 
-  <div class="row">
-    <div class="column-lg-12">
-      <div class="panel panel-primary">
+  <!--to hold train schedule output-->
+  <div class="panel panel-warning">
+    <h3 class="panel-heading"><strong>Current Train Schedule</strong></h3>
+  </div>
+  <div class="panel-body">
+    <table class="table table-bordered" id=trainTable>
+      <thead>
+        <tr>
+          <th>Train Name</th>
+          <th>Destination</th>
+          <th>Frequency</th>
+          <th>Next Arrival</th>
+          <th>Minutes Away</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- output to go here -->
+      </tbody>
+    </table>
+  </div>
+  </div>
 
-        <!--to hold train schedule output-->
+  <!-- Add Train  -->
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong>Add Train</strong></h3>
+    </div>
+    <div class="panel-body">
+      <div class="panel panel-primary">
+        <!--to hold inquiry form-->
         <div class="panel-body">
-          <table class="table table-hover" id=trainTable>
-            <thead>
-              <tr>
-                <th>Train Name</th>
-                <th>Destination</th>
-                <th>Frequency</th>
-                <th>Next Arrival</th>
-                <th>Minutes Away</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- output to go here -->
-            </tbody>
-          </table>
-          <!--closes primary panel for train scheduel output-->
+          <form>
+            <div class="form-group">
+              <label for="">Train Name</label>
+              <input type="text" class="form-control" id="trainNameInput">
+            </div>
+            <!-- close div for form group train name-->
+
+            <div class="form-group">
+              <label for="">Destination</label>
+              <input type="text" class="form-control" id="destinationInput">
+
+              <div class="form-group">
+                <label for="">
+                                <br>First Train Time (HH:mm - Military Time) </label>
+                <div class="col-10">
+                  <input class="form-control" type='text' id="firstTrainInput">
+                  <br>
+                  <label for="">Frequency (min)</label>
+                  <input type="number" class="form-control" id="frequencyInput">
+                </div>
+                <!-- close class col-->
+              </div>
+              <!-- close form group row-->
+            </div>
+            <!-- close primary group-->
+            <input type="submit" value="submit" class="btn" id="submitBtn" />
+          </form>
         </div>
       </div>
-    </div>
-  </div>
-  <!--close panel-primary to hold return -->
+      <!--closes div for inquiry form-->
 
-
-
-  <div class="panel panel-primary">
-    <!--to hold inquiry form-->
-    <div class="panel-body">
-
-      <form>
-        <div class="form-group">
-          <label for="">Train Name</label>
-          <input type="text" class="form-control" id="trainNameInput">
-        </div>
-        <!-- close div for form group train name-->
-
-        <div class="form-group">
-          <label for="">Destination</label>
-          <input type="text" class="form-control" id="destinationInput">
-
-          <div class="form-group">
-            <label for="">
-                                <br>First Train Time (HH:mm - Military Time) </label>
-            <div class="col-10">
-              <input class="form-control" type='text' id="firstTrainInput">
-              <br>
-              <label for="">Frequency (min)</label>
-              <input type="number" class="form-control" id="frequencyInput">
-            </div>
-            <!-- close class col-->
-          </div>
-          <!-- close form group row-->
-        </div>
-        <!-- close primary group-->
-
-
-        <input type="submit" value="submit" class="btn btn-success" id="submitBtn" />
-      </form>
-    </div>
-  </div>
-  <!--closes div for inquiry form-->
-
-  <script type="text/javascript" src="assets/javascript/app.js"></script>
+      <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
 
 </html>
