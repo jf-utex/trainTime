@@ -36,25 +36,29 @@
   </div>
   <!-- closes jumbotron container -->
 
+  <div class="row">
+    <div class="column-lg-12">
+      <div class="panel panel-primary">
 
-  <div class="panel panel-primary">
-    <!--to hold train schedule output-->
-    <div class="panel-body">
-      <table class="table table-hover" id= trainTable>
-        <thead>
-          <tr>
-            <th>Train Name</th>
-            <th>Destination</th>
-            <th>Frequency</th>
-            <th>Next Arrival</th>
-            <th>Minutes Away</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- output to go here -->
-        </tbody>
-      </table>
-      <!--closes primary panel for train scheduel output-->
+        <!--to hold train schedule output-->
+        <div class="panel-body">
+          <table class="table table-hover" id=trainTable>
+            <thead>
+              <tr>
+                <th>Train Name</th>
+                <th>Destination</th>
+                <th>Frequency</th>
+                <th>Next Arrival</th>
+                <th>Minutes Away</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- output to go here -->
+            </tbody>
+          </table>
+          <!--closes primary panel for train scheduel output-->
+        </div>
+      </div>
     </div>
   </div>
   <!--close panel-primary to hold return -->
@@ -67,22 +71,22 @@
 
       <form>
         <div class="form-group">
-          <label for="Train Name">Train Name</label>
+          <label for="">Train Name</label>
           <input type="text" class="form-control" id="trainNameInput">
         </div>
         <!-- close div for form group train name-->
 
         <div class="form-group">
-          <label for="Destination">Destination</label>
+          <label for="">Destination</label>
           <input type="text" class="form-control" id="destinationInput">
 
           <div class="form-group">
-            <label for="First Train Time">
+            <label for="">
                                 <br>First Train Time (HH:mm - Military Time) </label>
             <div class="col-10">
               <input class="form-control" type='text' id="firstTrainInput">
               <br>
-              <label for="Frequency">Frequency (min)</label>
+              <label for="">Frequency (min)</label>
               <input type="number" class="form-control" id="frequencyInput">
             </div>
             <!-- close class col-->
