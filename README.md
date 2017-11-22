@@ -1,3 +1,3 @@
 # trainTime
 
-Use of Firebase Database and Moment JS were the main purpose for this excercese.  Calculation of arrival and minutes away was necessary
+Use of Firebase Database and Moment JS were used for this application.  Calculation of the train arrival time and the number of minutes away is presented.
